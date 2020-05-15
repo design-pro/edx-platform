@@ -1,0 +1,34 @@
+/*.video-player {*/
+    /*position: relative;*/
+/*}*/
+
+/*.video-player:before {*/
+    /*content: "";*/
+    /*position: absolute;*/
+    /*right: 0;*/
+    /*left: 0;*/
+    /*top: 0;*/
+    /*bottom: 0;*/
+    /*background: rgba(0, 0, 0, 0.5);*/
+/*}*/
+
+/*.video-player:after {*/
+    /*content: "ā–ø";*/
+    /*color: #fff;*/
+    /*position: absolute;*/
+    /*z-index: 1;*/
+    /*height: 50px;*/
+    /*width: 50px;*/
+    /*right: 0;*/
+    /*left: 0;*/
+    /*top: 0;*/
+    /*bottom: 0;*/
+    /*margin: auto;*/
+    /*font-size: 85px;*/
+    /*line-height: 60px;*/
+    /*cursor: pointer;*/
+/*}*/
+
+/*.video-player.hidden:after, .video-player.hidden:before {*/
+    /*display: none;*/
+/*}*/

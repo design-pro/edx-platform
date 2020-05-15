@@ -1,0 +1,186 @@
+<!-- You can make changes to HTML templates by copying them to your theme directory in the appropriate place, and making the changes you need. Keep in mind that in the future if you upgrade the Open edX code, you may have to update the copied template in your theme also. -->
+
+## mako
+<%namespace name='static' file='static_content.html'/>
+<%namespace file='main.html' import="login_query"/>
+<%!
+from django.core.urlresolvers import reverse
+from django.utils.translation import ugettext as _
+from openedx.core.djangolib.markup import HTML
+from six import text_type
+# App that handles subdomain specific branding
+import branding
+# app that handles site status messages
+from status.status import get_site_status_msg
+from lms.djangoapps.ccx.overrides import get_current_ccx
+%>
+<%
+  mktg_site_enabled = static.get_value('ENABLE_MKTG_SITE', settings.FEATURES.get('ENABLE_MKTG_SITE', False))
+  courses_are_browsable = settings.FEATURES.get('COURSES_ARE_BROWSABLE')
+  allows_login = not settings.FEATURES['DISABLE_LOGIN_BUTTON'] and not combined_login_and_register
+  can_discover_courses = settings.FEATURES.get('ENABLE_COURSE_DISCOVERY')
+  allow_public_account_creation = static.get_value('ALLOW_PUBLIC_ACCOUNT_CREATION', settings.FEATURES.get('ALLOW_PUBLIC_ACCOUNT_CREATION'))
+%>
+
+## Provide a hook for themes to inject branding on top.
+<%block name="navigation_top" />
+
+<%block>
+<%
+try:
+    course_id = course.id.to_deprecated_string()
+except:
+    # can't figure out a better way to get at a possibly-defined course var
+    course_id = None
+site_status_msg = get_site_status_msg(course_id)
+%>
+% if site_status_msg:
+<div class="site-status">
+  <div class="inner-wrapper">
+    <span class="white-error-icon"></span>
+    <p>${site_status_msg}</p>
+  </div>
+</div>
+% endif
+</%block>
+<!--window-wrap
+          <div class="container-fluid" dir="rtl">-->
+<a class="nav-skip" href="#content">پریدن به محتوای اصلی</a>
+
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid" style="padding: 0 !important;">
+      <div id="navbar" class="navbar-collapse">
+          <ul class="nav navbar-nav navbar-left">
+              <div class="navbar-header ea-navbar-header">
+                  <a class="navbar-brand" href="/" style="margin: 0 !important;">
+                      <div class="ea-hover-home"></div>
+                      <img src="${static.url('images/logo-small.png')}" height="37" alt="Home Page" />
+                  </a>
+                  <a style="font-size: 20px;padding: 6px 10px 1px;"
+                      class="btn btn-default ea-open-menu">&#9776;</a>
+              </div>
+              <li class="nav-global-05 ea-toggle" style="border-left: 1px solid #ddd;">
+                  <a class="cta cta-discovery" href="/">خانه</a>
+              </li>
+              <li class="nav-global-05 ea-toggle" style="border-left: 1px solid #ddd;">
+                  <a class="cta cta-discovery" href="/about">درباره مدرس</a>
+              </li>
+              <li class="nav-global-05 ea-toggle" style="border-left: 1px solid #ddd;">
+                  <a class="cta cta-discovery" href="/boxes">بسته ها</a>
+              </li>
+              <li class="nav-global-05 ea-toggle" style="border-left: 1px solid #ddd;">
+                  <a class="cta cta-discovery" href="/courses">فهرست دوره ها</a>
+              </li>
+              % if user.is_authenticated():
+              <!--${'active ' if reverse('dashboard') == request.path else ''}-->
+              <li class="nav-global-05 ea-toggle " style="border-left: 1px solid #ddd;">
+                <a class="cta cta-discovery" aria-current="${'page' if reverse('dashboard') == request.path else 'false'}" href="${reverse('dashboard')}">${_("My Courses")}</a>
+              </li>
+              % endif
+              <li class="dropdown-me ea-toggle">
+                  <a href="#" class="dropdown-toggle dastebandi-doros">دوره ها <span class="caret"></span></a>
+                  <ul class="dropdown-menu-me ea-drop">
+                      <!--<h2 class="ea-menu-title"><i class="glyphicon glyphicon-menu-hamburger"></i> دسته بندی دوره ها</h2>-->
+                      <li><a href="/tag/6">مهارت های تبلیغی</a></li>
+                      <li><a href="/tag/7">مباني تبليغ</a></li>
+                      <li><a href="/tag/8">مهارت هاي تربيتي</a></li>
+                      <li><a href="/tag/9">مباني تربيت</a></li>
+                      <li><a href="/tag/11">مهارت هاي علمي</a></li>
+                      <li><a href="/tag/13">عقايد</a></li>
+                      <li><a href="/tag/15">اصول مديريت و تشكيلات</a></li>
+                      <li><a href="/tag/17">هنر و رسانه</a></li>
+                      <li><a href="/tag/18">فقه و احکام</a></li>
+                      <li><a href="/tag/19">آداب و مهارت های طلبگی</a></li>
+                      <li><a href="/tag/20">مهارت های رایانه</a></li>
+                      <li><a href="/tag/21">قرارگاه پیشرفت و آبادانی</a></li>
+                      <li><a href="/tag/22">مهارت های قرآنی</a></li>
+                      <li><a href="/tag/23">ارتباطات انسانی</a></li>
+                      <li><a href="/tag/24">مهارت های هنری</a></li>
+                      <li><a href="/tag/25">طب و سلامت</a></li>
+                      <li><a href="/tag/26">تاریخ</a></li>
+                      <li><a href="/tag/27">سبک زندگی</a></li>
+                  </ul>
+              </li>
+            <!-- #search code -->
+              <form method="get" action="/courses" class="navbar-form navbar-left ea-search ea-toggle">
+                <div class="input-group">
+                    <div class="input-group-btn">
+                        <button type="submit" class="btn btn-default btn-search">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                    <input type="text" class="form-control textfeaild-search" name="search_query" aria-label="Text input with segmented button dropdown" placeholder="جستجو در بین دوره ها ...">
+                </div>
+            </form>
+          </ul>
+
+          % if not user.is_authenticated():
+          <ul class="ea-toggle nav navbar-nav navbar-right menu-profile nav-global" style="margin: 0 !important;">
+              <!-- % if allows_login: -->
+                <!-- % if allow_public_account_creation: -->
+                    <li class="nav-global-04">
+                        <a class="cta cta-register" href="/register${login_query()}"><span class="glyphicon glyphicon-user icon-space"
+                                aria-hidden="true"></span>ثبت نام</a>
+                    </li>
+                <!-- % endif -->
+                <li class="nav-global-01" style="border-right: 1px solid #dddddd;">
+                    <a class="cta cta-login" href="/login${login_query()}"><span class="glyphicons glyphicons-user icon-space"
+                            aria-hidden="true"></span>ورود</a>
+                </li>
+              <!-- % endif -->
+          </ul>
+          % endif
+          % if user.is_authenticated():
+            <ul class="user nav navbar-nav navbar-right menu-profile nav-global ea-toggle" style="margin: 0 !important;">
+            <li class="dropdown-me ea-toggle" style="border-right: 1px solid #eeeeee;min-width: 190px !important;">
+                <a href="#" class="dropdown-toggle dastebandi-doros" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">${user.username}<span class="caret"></span></a>
+                <ul class="dropdown-menu-me ea-prof-link" style="left: 0 !important;">
+                    %if settings.FEATURES.get('ENABLE_SYSADMIN_DASHBOARD','') and user.is_staff:
+                        <li><a href="${reverse('sysadmin')}">پنل مدیریت</a></li>
+                    % endif
+                    <li><a href="${reverse('learner_profile', kwargs={'username': user.username})}">پروفایل</a></li>
+                    <li><a href="${reverse('account_settings')}">تنظیمات</a></li>
+                    <li><a href="${reverse('logout')}" role="menuitem">خروج از سیستم</a></li>
+                </ul>
+            </li>
+            </ul>
+            % if should_display_shopping_cart_func():
+            <ul class="user nav navbar-nav navbar-right menu-profile nav-global ea-toggle">
+            <li class="primary">
+                <a class="shopping-cart" href="${reverse('shoppingcart.views.show_cart')}">
+                    <i class="icon fa fa-shopping-cart"></i> سبد خرید
+                </a>
+            </li>
+            </ul>
+            % endif
+        % endif
+      </div>
+      <!--/.nav-collapse -->
+  </div>
+</nav>
+<!--/.top-bar-->
+<header id="global-navigation" class="global ">
+  <nav class="nav-wrapper" aria-label="جهانی">
+      <h1 class="logo"></h1>
+  </nav>
+</header>
+<!-- 
+% if course:
+<!--[if lte IE 8]>
+<div class="ie-banner" aria-hidden="true">${_('<strong>Warning:</strong> Your browser is not fully supported. We strongly recommend using {chrome_link} or {ff_link}.').format(chrome_link='<a href="https://www.google.com/intl/en/chrome/browser/" target="_blank">Chrome</a>', ff_link='<a href="http://www.mozilla.org/en-US/firefox/new/" target="_blank">Firefox</a>')}</div>
+<![endif]
+% endif
+
+%if not user.is_authenticated():
+  <%include file="forgot_password_modal.html" />
+%endif
+
+<%include file="help_modal.html"/> -->
+
+<script type="text/javascript">
+  $(document).ready(function () {
+    $('.dropdown-menu > li>a:not(a[href="#"])').on('click', function () {
+      self.location = $(this).attr('href');
+    });
+  });
+</script>

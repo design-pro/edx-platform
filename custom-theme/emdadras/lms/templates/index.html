@@ -1,0 +1,782 @@
+<%page expression_filter="h"/>
+<%inherit file="main.html" />
+<%namespace name='static' file='static_content.html'/>
+<%!
+from django.utils.translation import ugettext as _
+from django.urls import reverse
+
+from openedx.core.djangolib.markup import HTML, Text
+%>
+<%block name="bodyextra">
+<section class="home">
+    <!-- start index file -->
+    <header>
+    <div class="outer-wrapper">
+        <div class="title">
+            <hgroup>
+                <div class="course-search ea-text-logo"
+                    style="text-align: center; border-bottom: 1px solid #5c5c5c;">
+                    <img src="${static.url('images/text-logo.png')}"></img>
+                </div>
+                <div class="course-search">
+                    <form method="get" action="/courses">
+                        <label><span class="sr">جست‌وجوی یک دوره</span>
+                            <input class="search-input" name="search_query" type="text"
+                                placeholder="جستجو درس..."></input>
+                        </label>
+                        <button class="search-button" type="submit">
+                            <i class="icon fa fa-search" aria-hidden="true"></i><span class="sr">جست و
+                                جو</span>
+                        </button>
+                    </form>
+                </div>
+                <!-- <div class="course-search" style="text-align: center; border-top: 1px solid #5c5c5c;">
+                <a href="/login" class="index-searchBox-button">ورود</a>
+                <a href="/register" class="index-searchBox-button">ثبت نام</a>
+            </div> -->
+            </hgroup>
+        </div>
+    </div><!-- end div class=outer-wrapper-->
+
+    <a class="ea_read scroll" href="#ea_read">
+        <span class="glyphicon-chevron-down"
+            style="display: block;line-height: 35px;animation: ea-up-down 1.5s infinite;"></span>
+        <span class="glyphicon-chevron-down"
+            style="display: block;line-height: 35px;animation: ea-up-down 1.5s infinite;animation-delay: 0.75s;"></span>
+    </a>
+
+    </header><!--end header -->
+    <div class="counter" style="background: #fff; padding-top: 20px; padding-bottom: 20px; text-align: center;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-xs-6">
+                <span class="counter wow" data-count="129"
+                    style="min-width: 80px;padding: 30px 0;display: inline-block;background: #282d64;color: #fff;border-radius: 100%;">
+                    0
+                </span>
+                <p style="margin: 10px 0 0 0">
+                    دوره های فعال
+                </p>
+            </div>
+            <div class="col-md-4 col-xs-6">
+                <span class="counter wow" data-count="21038"
+                    style="min-width: 80px;padding: 30px 0;display: inline-block;background: #282d64;color: #fff;border-radius: 100%;">
+                    0
+                </span>
+                <p style="margin: 10px 0 0 0">
+                    بار ثبت نام در دوره
+                </p>
+            </div>
+            <div class="col-md-4 col-xs-6">
+                <span class="counter wow" data-count="4517"
+                    style="min-width: 80px;padding: 30px 0;display: inline-block;background: #282d64;color: #fff;border-radius: 100%;">
+                    0
+                </span>
+                <p style="margin: 10px 0 0 0">
+                    دانش پژوهان
+                </p>
+            </div>
+        </div>
+    </div>
+    </div><!-- end div class=counter -->
+
+    <div id="ea_read" class="container-fluid index-courses suggest-continer" style="padding:20px 0px 10px 0px;">
+    <div class="container">
+        <div class="row ea-courses-box-push" style="direction: rtl;">
+            <h6 class="h2-index-course h2-index-course-suggest-continer" style="color:#000000 !important;">
+                بسته های پیشنهادی
+                <a href="/boxes" style="font-size: 15px !important;">(همه بسته ها)</a>
+            </h6>
+            <ul class="courses-listing ea-pack-home bxslider3">
+                <li class="courses-listing-item" style="padding: 0 !important; margin: 0 !important;">
+                    <div class="thumbnail">
+
+                        <a href="/boxes/10/about">
+                            <img src="http://emadras.ir/asset-v1:madras+50+1396+type@asset+block@5656565.png"
+                                style="max-height: 150px; height: auto; width: 100%; display: block;">
+                            <div class="caption">
+                                <h3>آبادانی روستا</h3>
+                                <span class="course-organization"></span>
+                            </div>
+                        </a>
+
+                    </div>
+                </li>
+                <li class="courses-listing-item" style="padding: 0 !important; margin: 0 !important;">
+                    <div class="thumbnail">
+
+                        <a href="/boxes/9/about">
+                            <img src="http://emadras.ir/asset-v1:madras+023+1395+type@asset+block@Untitled-1.png"
+                                style="max-height: 150px; height: auto; width: 100%; display: block;">
+                            <div class="caption">
+                                <h3>اعتقادی</h3>
+                                <span class="course-organization"></span>
+                            </div>
+                        </a>
+
+                    </div>
+                </li>
+                <li class="courses-listing-item" style="padding: 0 !important; margin: 0 !important;">
+                    <div class="thumbnail">
+
+                        <a href="/boxes/8/about">
+                            <img src="http://emadras.ir/asset-v1:madras+34+1396+type@asset+block@تاریخ.png"
+                                style="max-height: 150px; height: auto; width: 100%; display: block;">
+                            <div class="caption">
+                                <h3>تاریخ معاصر ایران</h3>
+                                <span class="course-organization"></span>
+                            </div>
+                        </a>
+
+                    </div>
+                </li>
+                <li class="courses-listing-item" style="padding: 0 !important; margin: 0 !important;">
+                    <div class="thumbnail">
+
+                        <a href="/boxes/7/about">
+                            <img src="http://emadras.ir/asset-v1:madras+013+1395+type@asset+block@تبلیغ_عمومی.jpg"
+                                style="max-height: 150px; height: auto; width: 100%; display: block;">
+                            <div class="caption">
+                                <h3>تبلیغ عمومی</h3>
+                                <span class="course-organization"></span>
+                            </div>
+                        </a>
+
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    </div><!-- end div class=container-fluid index-courses suggest-continer-->
+
+    <div class="container-fluid index-courses"
+    style="position: relative;padding:20px 0px 10px 0px;margin-top: 0px;">
+    <div class="container">
+        <div class="row ea-courses-box-push" style="direction: ltr;">
+            <h6 class="h2-index-course" style="direction: rtl !important;">
+                آخرین دوره ها
+                <a href="/courses" style="font-size: 15px">(همه دوره ها)</a>
+            </h6>
+            <ul class="ea-popular ea-courses ea-course-list bxslider">
+                <li>
+                    <article class="ea-course" role="region" label="راه و رسم طلبگی 3">
+                        <div class="ea-img">
+                            <a href="/courses/course-v1:madras+157+1398/about">
+                                <div class="ea-hover">
+                                    <div class="hover text-center">
+                                        <div>
+                                            حجت الاسلام والمسلمین عالم زاده نوری
+                                        </div>
+                                    </div>
+                                    <span style="direction:rtl">
+                                        9500 تومان
+                                    </span>
+                                    <div class="les-num">
+                                        17 جلسه
+                                    </div>
+                                    <img src="/asset-v1:madras+157+1398+type@thumbnail+block@راه_و_رسم_طلبگی_3.jpg"
+                                        alt="راه و رسم طلبگی 3">
+                                </div>
+
+                            </a>
+                        </div>
+                        <div class="course-info">
+                            <h2><a href="/courses/course-v1:madras+157+1398/about">راه و رسم طلبگی 3 (ویژگی
+                                    های طلبه مطلوب)</a></h2>
+                            <div class="course-info-b">
+                                <p>سامانه آموزش مجازی مَدرس</p>
+                            </div>
+                        </div>
+                    </article>
+                </li>
+                <li>
+                    <article class="ea-course" role="region" label="راه و رسم طلبگی 2">
+                        <div class="ea-img">
+                            <a href="/courses/course-v1:madras+156+1398/about">
+                                <div class="ea-hover">
+                                    <div class="hover text-center">
+                                        <div>
+                                            حجت الاسلام والمسلمین عالم زاده نوری
+                                        </div>
+                                    </div>
+                                    <span style="direction:rtl">
+                                        13500 تومان
+                                    </span>
+                                    <div class="les-num">
+                                        26 جلسه
+                                    </div>
+                                    <img src="/asset-v1:madras+156+1398+type@thumbnail+block@راه_و_رسم_2.jpg"
+                                        alt="راه و رسم طلبگی 2">
+                                </div>
+
+                            </a>
+                        </div>
+                        <div class="course-info">
+                            <h2><a href="/courses/course-v1:madras+156+1398/about">راه و رسم طلبگی 2 (معنا و
+                                    ماهیت طلبگی)</a></h2>
+                            <div class="course-info-b">
+                                <p>سامانه آموزش مجازی مَدرس</p>
+                            </div>
+                        </div>
+                    </article>
+                </li>
+                <li>
+                    <article class="ea-course" role="region" label="راه و رسم طلبگی">
+                        <div class="ea-img">
+                            <a href="/courses/course-v1:madras+155+1398/about">
+                                <div class="ea-hover">
+                                    <div class="hover text-center">
+                                        <div>
+                                            حجت الاسلام والمسلمین عالم زاده نوری
+                                        </div>
+                                    </div>
+                                    <span style="direction:rtl">
+                                        6700 تومان
+                                    </span>
+                                    <div class="les-num">
+                                        13 جلسه
+                                    </div>
+                                    <img src="/asset-v1:madras+155+1398+type@thumbnail+block@DSCF7368.jpg"
+                                        alt="راه و رسم طلبگی">
+                                </div>
+
+                            </a>
+                        </div>
+                        <div class="course-info">
+                            <h2><a href="/courses/course-v1:madras+155+1398/about">راه و رسم طلبگی 1
+                                    (مقدمه)</a></h2>
+                            <div class="course-info-b">
+                                <p>سامانه آموزش مجازی مَدرس</p>
+                            </div>
+                        </div>
+                    </article>
+                </li>
+                <li>
+                    <article class="ea-course" role="region" label="مدیریت مسجد">
+                        <div class="ea-img">
+                            <a href="/courses/course-v1:madras+98154+1398/about">
+                                <div class="ea-hover">
+                                    <div class="hover text-center">
+                                        <div>
+                                            حجت الاسلام والمسلمین تقی قرائتی
+                                        </div>
+                                    </div>
+                                    <span style="direction:rtl">
+                                        4600 تومان
+                                    </span>
+                                    <div class="les-num">
+                                        19 جلسه
+                                    </div>
+                                    <img src="/asset-v1:madras+98154+1398+type@thumbnail+block@مدیریت_مسجد.jpg"
+                                        alt="مدیریت مسجد">
+                                </div>
+
+                            </a>
+                        </div>
+                        <div class="course-info">
+                            <h2><a href="/courses/course-v1:madras+98154+1398/about">مدیریت مسجد</a></h2>
+                            <div class="course-info-b">
+                                <p>مؤسسه مسجد</p>
+                            </div>
+                        </div>
+                    </article>
+                </li>
+                <li>
+                    <article class="ea-course" role="region" label="تربیت دینی فرزند">
+                        <div class="ea-img">
+                            <a href="/courses/course-v1:madras+154+1398/about">
+                                <div class="ea-hover">
+                                    <div class="hover text-center">
+                                        <div>
+                                            حجت الاسلام وحیدی
+                                        </div>
+                                    </div>
+                                    <span style="direction:rtl">
+                                        10500 تومان
+                                    </span>
+                                    <div class="les-num">
+                                        16 جلسه
+                                    </div>
+                                    <img src="/asset-v1:madras+154+1398+type@thumbnail+block@تربیت_دینی.jpg"
+                                        alt="تربیت دینی فرزند">
+                                </div>
+
+                            </a>
+                        </div>
+                        <div class="course-info">
+                            <h2><a href="/courses/course-v1:madras+154+1398/about">تربیت دینی فرزند</a></h2>
+                            <div class="course-info-b">
+                                <p>سامانه آموزش مجازی مَدرس</p>
+                            </div>
+                        </div>
+                    </article>
+                </li>
+                <li>
+                    <article class="ea-course" role="region" label="پیشگیری از آسییب های اجتماعی">
+                        <div class="ea-img">
+                            <a href="/courses/course-v1:madras+153+1397/about">
+                                <div class="ea-hover">
+                                    <div class="hover text-center">
+                                        <div>
+                                            سازمان تبلیغات اسلامی
+                                        </div>
+                                    </div>
+                                    <span style="direction:rtl">
+                                        رایگان
+                                    </span>
+                                    <div class="les-num">
+                                        1 جلسه
+                                    </div>
+                                    <img src="/asset-v1:madras+153+1397+type@thumbnail+block@آسیب.jpg"
+                                        alt="پیشگیری از آسییب های اجتماعی">
+                                </div>
+
+                            </a>
+                        </div>
+                        <div class="course-info">
+                            <h2><a href="/courses/course-v1:madras+153+1397/about">پیشگیری از آسییب های
+                                    اجتماعی</a></h2>
+                            <div class="course-info-b">
+                                <p>سازمان تبلیغات اسلامی</p>
+                            </div>
+                        </div>
+                    </article>
+                </li>
+                <li>
+                    <article class="ea-course" role="region" label="درسنامه های طرح حضور - مقطع ابتدایی">
+                        <div class="ea-img">
+                            <a href="/courses/course-v1:madras+151+1397/about">
+                                <div class="ea-hover">
+                                    <div class="hover text-center">
+                                        <div>
+                                            سامانه آموزش مجازی مَدرس
+                                        </div>
+                                    </div>
+                                    <span style="direction:rtl">
+                                        12700 تومان
+                                    </span>
+                                    <div class="les-num">
+                                        10 جلسه
+                                    </div>
+                                    <img src="/asset-v1:madras+151+1397+type@thumbnail+block@ابتدایی.jpg"
+                                        alt="درسنامه های طرح حضور - مقطع ابتدایی">
+                                </div>
+
+                            </a>
+                        </div>
+                        <div class="course-info">
+                            <h2><a href="/courses/course-v1:madras+151+1397/about">درسنامه های طرح حضور -
+                                    مقطع ابتدایی</a></h2>
+                            <div class="course-info-b">
+                                <p>سامانه آموزش مجازی مَدرس</p>
+                            </div>
+                        </div>
+                    </article>
+                </li>
+                <li>
+                    <article class="ea-course" role="region" label="درسنامه های طرح حضور - مقطع راهنمایی">
+                        <div class="ea-img">
+                            <a href="/courses/course-v1:madras+152+1397/about">
+                                <div class="ea-hover">
+                                    <div class="hover text-center">
+                                        <div>
+                                            سامانه آموزش مجازی مَدرس
+                                        </div>
+                                    </div>
+                                    <span style="direction:rtl">
+                                        15300 تومان
+                                    </span>
+                                    <div class="les-num">
+                                        10 جلسه
+                                    </div>
+                                    <img src="/asset-v1:madras+152+1397+type@thumbnail+block@راهنمایی.jpg"
+                                        alt="درسنامه های طرح حضور - مقطع راهنمایی">
+                                </div>
+
+                            </a>
+                        </div>
+                        <div class="course-info">
+                            <h2><a href="/courses/course-v1:madras+152+1397/about">درسنامه های طرح حضور -
+                                    مقطع راهنمایی</a></h2>
+                            <div class="course-info-b">
+                                <p>سامانه آموزش مجازی مَدرس</p>
+                            </div>
+                        </div>
+                    </article>
+                </li>
+                <li>
+                    <article class="ea-course" role="region" label="احکام شرعی">
+                        <div class="ea-img">
+                            <a href="/courses/course-v1:madras+149+1397/about">
+                                <div class="ea-hover">
+                                    <div class="hover text-center">
+                                        <div>
+                                            مرکز تحقیقات کامپیوتری علوم اسلامی- سایت جامع فرهنگی، مذهبی شهید
+                                            آوینی
+                                        </div>
+                                    </div>
+                                    <span style="direction:rtl">
+                                        رایگان
+                                    </span>
+                                    <div class="les-num">
+                                        82 جلسه
+                                    </div>
+                                    <img src="/asset-v1:madras+149+1397+type@thumbnail+block@asset-v1_madras_76_1396_type_thumbnail_block_225523_470.jpg"
+                                        alt="احکام شرعی">
+                                </div>
+
+                            </a>
+                        </div>
+                        <div class="course-info">
+                            <h2><a href="/courses/course-v1:madras+149+1397/about">احکام شرعی</a></h2>
+                            <div class="course-info-b">
+                                <p>مرکز تحقیقات علوم اسلامی و سایت جامع شهید آوینی</p>
+                            </div>
+                        </div>
+                    </article>
+                </li>
+            </ul>
+        </div>
+    </div>
+    </div><!-- end div class=container-fluid index-courses-->
+
+    <div class="container-fluid" style="padding:20px 0px 10px 0px;">
+    <div class="container">
+        <div class="row ea-courses-box-push" style="direction: ltr;">
+            <h6 class="h2-index-course" style="color:#000000 !important;">دوره های محبوب</h6>
+            <ul class="ea-popular ea-courses ea-course-list bxslider2">
+                <li>
+                    <article class="ea-course" role="region" label="تاریخ معاصر ایران - دوره اول: صفویه">
+                        <div class="ea-img">
+                            <a href="/courses/course-v1:madras+34+1396/about">
+                                <div class="ea-hover">
+                                    <div class="hover text-center">
+                                        <div>
+                                            حجت الاسلام ابوطالبی
+                                        </div>
+                                    </div>
+                                    <span style="direction:rtl">
+                                        9400 تومان
+                                    </span>
+                                    <div class="les-num">
+                                        20 جلسه
+                                    </div>
+                                    <img src="/asset-v1:madras+34+1396+type@thumbnail+block@صفویه.jpg"
+                                        alt="تاریخ معاصر ایران - دوره اول: صفویه">
+                                </div>
+
+                            </a>
+                        </div>
+                        <div class="course-info">
+                            <h2><a href="/courses/course-v1:madras+34+1396/about">تاریخ معاصر ایران - دوره
+                                    اول: صفویه</a></h2>
+                            <div class="course-info-b">
+                                <p>سامانه آموزش مجازی مَدرس</p>
+                            </div>
+                        </div>
+                    </article>
+                </li>
+                <li>
+                    <article class="ea-course" role="region" label="طب سنتی">
+                        <div class="ea-img">
+                            <a href="/courses/course-v1:madras+73+1396/about">
+                                <div class="ea-hover">
+                                    <div class="hover text-center">
+                                        <div>
+                                            سامانه آموزش مجازی مَدرس
+                                        </div>
+                                    </div>
+                                    <span style="direction:rtl">
+                                        رایگان
+                                    </span>
+                                    <div class="les-num">
+                                        27 جلسه
+                                    </div>
+                                    <img src="/asset-v1:madras+73+1396+type@thumbnail+block@طب_سنتی.jpg"
+                                        alt="طب سنتی">
+                                </div>
+
+                            </a>
+                        </div>
+                        <div class="course-info">
+                            <h2><a href="/courses/course-v1:madras+73+1396/about">طب سنتی</a></h2>
+                            <div class="course-info-b">
+                                <p>سامانه آموزش مجازی مَدرس</p>
+                            </div>
+                        </div>
+                    </article>
+                </li>
+                <li>
+                    <article class="ea-course" role="region" label="آموزش بیان احکام">
+                        <div class="ea-img">
+                            <a href="/courses/course-v1:madras+114+1396/about">
+                                <div class="ea-hover">
+                                    <div class="hover text-center">
+                                        <div>
+                                            حجت الاسلام فلاح زاده
+                                        </div>
+                                    </div>
+                                    <span style="direction:rtl">
+                                        رایگان
+                                    </span>
+                                    <div class="les-num">
+                                        12 جلسه
+                                    </div>
+                                    <img src="/asset-v1:madras+114+1396+type@thumbnail+block@احکام_فلاح_زاده.jpg"
+                                        alt="آموزش بیان احکام">
+                                </div>
+
+                            </a>
+                        </div>
+                        <div class="course-info">
+                            <h2><a href="/courses/course-v1:madras+114+1396/about">آموزش بیان احکام</a></h2>
+                            <div class="course-info-b">
+                                <p>سامانه آموزش مجازی مَدرس</p>
+                            </div>
+                        </div>
+                    </article>
+                </li>
+                <li>
+                    <article class="ea-course" role="region" label="آموزش احکام اشیاء پیدا شده">
+                        <div class="ea-img">
+                            <a href="/courses/course-v1:madras+118+1396/about">
+                                <div class="ea-hover">
+                                    <div class="hover text-center">
+                                        <div>
+                                            مرکز تحقیقات کامپیوتری علوم اسلامی
+                                        </div>
+                                    </div>
+                                    <span style="direction:rtl">
+                                        رایگان
+                                    </span>
+                                    <div class="les-num">
+                                        1 جلسه
+                                    </div>
+                                    <img src="/asset-v1:madras+118+1396+type@thumbnail+block@اشیا_پیدا_شده.jpg"
+                                        alt="آموزش احکام اشیاء پیدا شده">
+                                </div>
+
+                            </a>
+                        </div>
+                        <div class="course-info">
+                            <h2><a href="/courses/course-v1:madras+118+1396/about">آموزش احکام اشیاء پیدا
+                                    شده</a></h2>
+                            <div class="course-info-b">
+                                <p>سامانه آموزش مجازی مَدرس</p>
+                            </div>
+                        </div>
+                    </article>
+                </li>
+                <li>
+                    <article class="ea-course" role="region" label="آموزش احکام نذر و قسم">
+                        <div class="ea-img">
+                            <a href="/courses/course-v1:madras+82+1396/about">
+                                <div class="ea-hover">
+                                    <div class="hover text-center">
+                                        <div>
+                                            سایت جامع فرهنگی و مذهبی شهید آوینی
+                                        </div>
+                                    </div>
+                                    <span style="direction:rtl">
+                                        رایگان
+                                    </span>
+                                    <div class="les-num">
+                                        1 جلسه
+                                    </div>
+                                    <img src="/asset-v1:madras+82+1396+type@thumbnail+block@photo_2017-04-25_22-00-40.jpg"
+                                        alt="آموزش احکام نذر و قسم">
+                                </div>
+
+                            </a>
+                        </div>
+                        <div class="course-info">
+                            <h2><a href="/courses/course-v1:madras+82+1396/about">آموزش احکام نذر و قسم</a>
+                            </h2>
+                            <div class="course-info-b">
+                                <p>سامانه آموزش مجازی مَدرس</p>
+                            </div>
+                        </div>
+                    </article>
+                </li>
+                <li>
+                    <article class="ea-course" role="region" label="آموزش احکام تیمم">
+                        <div class="ea-img">
+                            <a href="/courses/course-v1:madras+78+1396/about">
+                                <div class="ea-hover">
+                                    <div class="hover text-center">
+                                        <div>
+                                            مرکز تحقیقات کامپیوتری علوم اسلامی
+                                        </div>
+                                    </div>
+                                    <span style="direction:rtl">
+                                        رایگان
+                                    </span>
+                                    <div class="les-num">
+                                        2 جلسه
+                                    </div>
+                                    <img src="/asset-v1:madras+78+1396+type@thumbnail+block@photo_2017-04-25_21-56-02.jpg"
+                                        alt="آموزش احکام تیمم">
+                                </div>
+
+                            </a>
+                        </div>
+                        <div class="course-info">
+                            <h2><a href="/courses/course-v1:madras+78+1396/about">آموزش احکام تیمم</a></h2>
+                            <div class="course-info-b">
+                                <p>سامانه آموزش مجازی مَدرس</p>
+                            </div>
+                        </div>
+                    </article>
+                </li>
+                <li>
+                    <article class="ea-course" role="region" label="آموزش احکام نماز">
+                        <div class="ea-img">
+                            <a href="/courses/course-v1:madras+76+1396/about">
+                                <div class="ea-hover">
+                                    <div class="hover text-center">
+                                        <div>
+                                            مرکز تحقیقات کامپیوتری علوم اسلامی
+                                        </div>
+                                    </div>
+                                    <span style="direction:rtl">
+                                        رایگان
+                                    </span>
+                                    <div class="les-num">
+                                        22 جلسه
+                                    </div>
+                                    <img src="/asset-v1:madras+76+1396+type@thumbnail+block@225523_470.jpg"
+                                        alt="آموزش احکام نماز">
+                                </div>
+
+                            </a>
+                        </div>
+                        <div class="course-info">
+                            <h2><a href="/courses/course-v1:madras+76+1396/about">آموزش احکام نماز</a></h2>
+                            <div class="course-info-b">
+                                <p>سامانه آموزش مجازی مَدرس</p>
+                            </div>
+                        </div>
+                    </article>
+                </li>
+                <li>
+                    <article class="ea-course" role="region" label="آموزش احکام ازدواج">
+                        <div class="ea-img">
+                            <a href="/courses/course-v1:madras+117+1396/about">
+                                <div class="ea-hover">
+                                    <div class="hover text-center">
+                                        <div>
+                                            مرکز تحقیقات کامپیوتری علوم اسلامی
+                                        </div>
+                                    </div>
+                                    <span style="direction:rtl">
+                                        رایگان
+                                    </span>
+                                    <div class="les-num">
+                                        4 جلسه
+                                    </div>
+                                    <img src="/asset-v1:madras+117+1396+type@thumbnail+block@حلقه.jpg"
+                                        alt="آموزش احکام ازدواج">
+                                </div>
+
+                            </a>
+                        </div>
+                        <div class="course-info">
+                            <h2><a href="/courses/course-v1:madras+117+1396/about">آموزش احکام ازدواج</a>
+                            </h2>
+                            <div class="course-info-b">
+                                <p>سامانه آموزش مجازی مَدرس</p>
+                            </div>
+                        </div>
+                    </article>
+                </li>
+                <li>
+                    <article class="ea-course" role="region" label="آموزش احکام وصیت">
+                        <div class="ea-img">
+                            <a href="/courses/course-v1:madras+115+1396/about">
+                                <div class="ea-hover">
+                                    <div class="hover text-center">
+                                        <div>
+                                            مرکز تحقیقات کامپیوتری علوم اسلامی
+                                        </div>
+                                    </div>
+                                    <span style="direction:rtl">
+                                        رایگان
+                                    </span>
+                                    <div class="les-num">
+                                        1 جلسه
+                                    </div>
+                                    <img src="/asset-v1:madras+115+1396+type@thumbnail+block@وصیت.jpg"
+                                        alt="آموزش احکام وصیت">
+                                </div>
+
+                            </a>
+                        </div>
+                        <div class="course-info">
+                            <h2><a href="/courses/course-v1:madras+115+1396/about">آموزش احکام وصیت</a></h2>
+                            <div class="course-info-b">
+                                <p>سامانه آموزش مجازی مَدرس</p>
+                            </div>
+                        </div>
+                    </article>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+    </div><!-- end div class=container-fluid -->
+    <!-- end index file -->
+    <div class="container-fluid index-courses" style="padding:0px;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="h2-index-course" style="text-align: center;">ارائه دهندگان</h2>
+                    </div>
+                </div>
+                <div class="row" style="padding: 0px 0px 30px 0px">
+                    <div class="col-md-8">
+                        <div class="col-md-4 col-sm-6 col-xs-6 footer_supplier"><img class="img-responsive"
+                                src="${static.url('images/supplier_1.png')}"></div>
+        
+                        <div class="col-md-4 col-sm-6 col-xs-6 footer_supplier"><img class="img-responsive"
+                                src="${static.url('images/supplier_2.png')}"></div>
+        
+                        <div class="col-md-4 col-sm-6 col-xs-6 footer_supplier"><img class="img-responsive"
+                                src="${static.url('images/supplier_3.png')}"></div>
+        
+                        <div class="col-md-4 col-sm-6 col-xs-6 footer_supplier"><img class="img-responsive"
+                                src="${static.url('images/supplier_4.png')}"></div>
+        
+                        <div class="col-md-4 col-sm-6 col-xs-6 footer_supplier"><img class="img-responsive"
+                                src="${static.url('images/supplier_5.png')}"></div>
+        
+                        <div class="col-md-4 col-sm-6 col-xs-6 footer_supplier"><img class="img-responsive"
+                                src="${static.url('images/supplier_6.png')}"></div>
+                    </div>
+                    <div class="col-md-4" style="text-align: center">
+                        <a href="#"><img src="http://s9.picofile.com/file/8334863784/logo.png" alt="namad"></a>
+                        <a href="#"><img src="http://s8.picofile.com/file/8334863800/namad1s.png" alt="namad"></a>
+                        <div class="row">
+                            <div class="col-xs-12" style="margin-top: 30px">
+                                <a class="btn btn-info" target="_blank"
+                                    href="http://app32.emadras.ir/emadras-0.0.5.apk">
+                                    <i class="glyphicon glyphicon-cloud-download"></i>
+                                    دانلود اپلیکیشن
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                </div>
+            </div>
+    </div>
+</section>
+</%block>
+
+% if show_signup_immediately is not UNDEFINED:
+  ## NOTE: This won't work in production, because anonymous views are cached, so it will
+  ## show either with or without this extra js for 3 minutes at a time.
+<script type="text/javascript">
+  $(window).load(function () { $('#signup_action').trigger("click"); });
+</script>
+% endif

@@ -1,0 +1,44 @@
+## mako
+<%page expression_filter="h"/>
+<%!
+  from django.urls import reverse
+  from django.utils.translation import ugettext as _
+  from branding.api import get_footer
+  from openedx.core.djangoapps.lang_pref.api import footer_language_selector_is_enabled
+%>
+<% footer = get_footer(is_secure=is_secure) %>
+<%namespace name='static' file='static_content.html'/>
+
+
+<!-- start footer -->
+<footer class="footer hidden-sm hidden-xs">
+        <div class="container">
+            <section class="row">
+                <!-- <div class=" col-lg-6 col-md-6">
+                        <p class="navbar-text">کلیه حقوق مادی و معنوی این سایت متعلق به سامانه آموزش مجازی مدرس است و هرگونه گپی برداری قانوناً و شرعاً جائز نیست.</p>
+                    </div> -->
+                <div class=" col-lg-12 col-md-12 text-center">
+                    Copyright 2020. all rights reserved by Emadras © Power by <a style="color: #a595fb;"
+                        href="https://open.edx.org/">Open Edx</a> By <a style="color: #a595fb;"
+                        href="http://mehrparsict.com/">MehrparsICT</a>
+                    <a href="http://openedx.org">
+                        <img src="https://files.edx.org/openedx-logos/edx-openedx-logo-tag.png" width="120"
+                            height="37.2" alt="Powered by Open edX" />
+                    </a>
+                </div>
+            </section>
+        </div>
+</footer>
+<!-- end footer -->
+
+% if include_dependencies:
+  <%static:js group='base_vendor'/>
+  <%static:css group='style-vendor'/>
+  <%include file="widgets/segment-io.html" />
+  <%include file="widgets/segment-io-footer.html" />
+% endif
+% if footer_css_urls:
+  % for url in footer_css_urls:
+    <link rel="stylesheet" type="text/css" href="${url}"></link>
+  % endfor
+% endif
