@@ -6,6 +6,7 @@ edx_lang_map:
     zh_CN: zh_HANS
 
 locales:
+    fa # Persian - Source Language
     - en  # English - Source Language
     # - am  # Amharic
     - ar  # Arabic
