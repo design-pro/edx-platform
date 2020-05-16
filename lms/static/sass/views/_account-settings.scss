@@ -9,7 +9,7 @@
 
 // +Container - Account Settings
 .wrapper-account-settings {
-  background: $white;
+  // background: $white;
   width: 100%;
 
   .account-settings-container {
@@ -120,8 +120,14 @@
 
   .section {
     background-color: $white;
-    margin: $baseline 5% 0;
-    border-bottom: 4px solid $m-gray-l4;
+    // margin: $baseline 5% 0;
+    // border-bottom: 4px solid $m-gray-l4;
+
+    padding: $baseline;
+    margin-top: $baseline;
+    border: 1px solid #e3e3e3;
+    box-shadow: 0 0 1px 1px rgba(0,0,0,0.05);
+    border-radius: 5px;
 
     .account-settings-header-subtitle {
       font-size: em(14);
