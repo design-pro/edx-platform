@@ -3196,3 +3196,6 @@ ul.courses-listing {
 /*
  * Ended respansiv
  */
+ #djDebug #djDebugToolbar, #djDebug #djDebugToolbarHandle{
+     z-index: 9999999999 !important;
+ }
