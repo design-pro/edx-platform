@@ -5752,7 +5752,7 @@ msgstr ""
 
 #: lms/static/js/student_account/views/account_settings_factory.js
 msgid "Email Address (Sign In)"
-msgstr ""
+msgstr "آدرس پست الکترونیکی"
 
 #: lms/static/js/student_account/views/account_settings_factory.js
 msgid ""
@@ -5788,17 +5788,17 @@ msgstr ""
 
 #: lms/static/js/student_account/views/account_settings_factory.js
 msgid "Basic Account Information"
-msgstr ""
+msgstr "اطلاعات پایه‌ای حساب کاربری"
 
 #: lms/static/js/student_account/views/account_settings_factory.js
 msgid "These settings include basic information about your account."
-msgstr ""
+msgstr "این تنظیمات شامل اطلاعاتی درباره حساب کاربری شما می‌باشد."
 
 #: lms/static/js/student_account/views/account_settings_factory.js
 msgid ""
 "The name that identifies you on {platform_name}. You cannot change your "
 "username."
-msgstr ""
+msgstr "نامی که شما در {platform_name} شناخته خواهید شد."
 
 #: lms/static/js/student_account/views/account_settings_factory.js
 #: lms/templates/student_account/account.underscore
@@ -5837,11 +5837,11 @@ msgstr ""
 
 #: lms/static/js/student_account/views/account_settings_factory.js
 msgid "Additional Information"
-msgstr ""
+msgstr "دیگر اطلاعات (اختیاری)"
 
 #: lms/static/js/student_account/views/account_settings_factory.js
 msgid "Education Completed"
-msgstr ""
+msgstr "آخرین مدرک تحصیلی"
 
 #: lms/static/js/student_account/views/account_settings_factory.js
 msgid "Gender"
