@@ -323,7 +323,7 @@
                     }
                 );
             }
-            aboutSectionsData.push(socialFields);
+            // aboutSectionsData.push(socialFields);
 
             // Add account deletion fields
             if (displayAccountDeletion) {
