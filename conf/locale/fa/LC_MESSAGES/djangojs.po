@@ -6259,7 +6259,7 @@ msgstr ""
 
 #: openedx/features/learner_profile/static/learner_profile/js/views/learner_profile_fields.js
 msgid "Account Settings page."
-msgstr ""
+msgstr "صفحه تنطیمات حساب کاربری"
 
 #: openedx/features/learner_profile/static/learner_profile/js/views/learner_profile_fields.js
 msgid ""
@@ -6275,7 +6275,7 @@ msgstr ""
 
 #: openedx/features/learner_profile/static/learner_profile/js/views/learner_profile_fields.js
 msgid "Profile Image"
-msgstr ""
+msgstr "عکس پروفایل"
 
 #: openedx/features/learner_profile/static/learner_profile/js/views/learner_profile_fields.js
 msgid "Profile image for {username}"
@@ -6287,7 +6287,7 @@ msgstr "درباره ی من"
 
 #: openedx/features/learner_profile/static/learner_profile/js/views/learner_profile_view.js
 msgid "Accomplishments"
-msgstr ""
+msgstr "دستاوردها"
 
 #: openedx/features/learner_profile/static/learner_profile/js/views/learner_profile_view.js
 msgid "Profile"
