@@ -8,7 +8,7 @@
 # }
 
 # LOGGING['loggers']['tracking']['handlers'] = ['console']
-# DEBUG = False
+
 # LMS_BASE = 'localhost:18000'
 # CMS_BASE = 'localhost:18010'
 # SITE_NAME = LMS_BASE
@@ -80,7 +80,6 @@
 # # LOGGING['handlers']['console']['level'] = 'DEBUG'
 # # LOGGING['loggers']['django.db.backends'] = {'handlers': ['console'], 'level': 'DEBUG', 'propagate': False}
 
-
 # start
 # -*- coding: utf-8 -*-
 
@@ -131,7 +130,7 @@ CONFIG_ROOT = path(os.environ.get('CONFIG_ROOT', ENV_ROOT))
 CONFIG_PREFIX = SERVICE_VARIANT + "." if SERVICE_VARIANT else ""
 
 ################################ ALWAYS THE SAME ##############################
-
+LOGGING['loggers']['tracking']['handlers'] = ['console']
 DEBUG = False
 DEFAULT_TEMPLATE_ENGINE['OPTIONS']['debug'] = False
 
