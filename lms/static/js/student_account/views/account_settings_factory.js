@@ -116,7 +116,7 @@
                 valueAttribute: 'country',
                 options: fieldsData.country.options,
                 persistChanges: true,
-                helpMessage: gettext('The country or region where you live.')
+                // helpMessage: gettext('The country or region where you live.')
             };
             if (syncLearnerProfileData && enterpriseReadonlyAccountFields.fields.indexOf('country') !== -1) {
                 countryFieldData.editable = 'never';
@@ -323,7 +323,7 @@
                     }
                 );
             }
-            // aboutSectionsData.push(socialFields);
+            aboutSectionsData.push(socialFields);
 
             // Add account deletion fields
             if (displayAccountDeletion) {
