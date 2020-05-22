@@ -270,6 +270,10 @@ if os.path.isfile(join(dirname(abspath(__file__)), 'private.py')):
     from .private import *  # pylint: disable=import-error,wildcard-import
 
 #####################################################################
+# See if the developer has any server overrides.
+if os.path.isfile(join(dirname(abspath(__file__)), 'server.py')):
+    from .server import *  # pylint: disable=import-error,wildcard-import
+#####################################################################
 # Lastly, run any migrations, if needed.
 MODULESTORE = convert_module_store_setting_if_needed(MODULESTORE)
 
