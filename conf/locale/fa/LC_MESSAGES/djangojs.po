@@ -5780,7 +5780,7 @@ msgstr ""
 
 #: lms/static/js/student_account/views/account_settings_factory.js
 msgid "Country or Region of Residence"
-msgstr ""
+msgstr "کشور و یا منطقه"
 
 #: lms/static/js/student_account/views/account_settings_factory.js
 msgid "The country or region where you live."
